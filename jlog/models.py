@@ -73,3 +73,13 @@ class TermLog(models.Model):
     history = models.TextField(null=True)
     timestamp = models.IntegerField(default=int(time.time()))
     datetimestamp = models.DateTimeField(auto_now_add=True)
+
+
+class RunProcess(models.Model):
+    class Meta:
+        db_table = "tb_task"
+    run_time = models.CharField(name="time", max_length=64)
+    user = models.CharField(max_length=32)
+    ip = models.CharField(max_length=100)
+    task = models.TextField()
+

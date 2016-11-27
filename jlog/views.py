@@ -7,7 +7,7 @@ from jperm.perm_api import user_have_perm
 from django.http import HttpResponseNotFound
 from jlog.log_api import renderJSON
 
-from jlog.models import Log, ExecLog, FileLog, TermLog
+from jlog.models import Log, ExecLog, FileLog, TermLog, RunProcess
 from jumpserver.settings import LOG_DIR
 import zipfile
 import json
@@ -36,6 +36,11 @@ def log_list(request, offset):
         keyword = request.GET.get('keyword', '')
         if keyword:
             posts = posts.filter(Q(user__icontains=keyword) | Q(host__icontains=keyword) | Q(cmd__icontains=keyword))
+    elif offset == 'proc':
+        posts = RunProcess.objects.all().order_by('-id')
+        keyword = request.GET.get('keyword', '')
+        if keyword:
+            posts = posts.filter(Q(user__icontains=keyword) | Q(ip__icontains=keyword) | Q(task__icontains=keyword))
     elif offset == 'file':
         posts = FileLog.objects.all().order_by('-id')
         keyword = request.GET.get('keyword', '')

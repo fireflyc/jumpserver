@@ -174,3 +174,7 @@ CRONJOBS = [
     ('0 1 * * *', 'jasset.asset_api.asset_ansible_update_all'),
     ('*/10 * * * *', 'jlog.log_api.kill_invalid_connection'),
 ]
+
+DANGER_CMD = ""
+if config.has_option("base", "danger_cmd"):
+    DANGER_CMD = config.get("base", "danger_cmd")

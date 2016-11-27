@@ -144,14 +144,14 @@ def user_add(request):
 
     if request.method == 'POST':
         username = request.POST.get('username', '')      
-        password = PyCrypt.gen_rand_pass(16)
+        password = PyCrypt.gen_rand_pass(16, especial=True)
         name = request.POST.get('name', '')
         email = request.POST.get('email', '')
         groups = request.POST.getlist('groups', [])
         admin_groups = request.POST.getlist('admin_groups', [])
         role = request.POST.get('role', 'CU')
         uuid_r = uuid.uuid4().get_hex()
-        ssh_key_pwd = PyCrypt.gen_rand_pass(16)
+        ssh_key_pwd = PyCrypt.gen_rand_pass(16, especial=True)
         extra = request.POST.getlist('extra', [])
         is_active = False if '0' in extra else True
         send_mail_need = True if '1' in extra else False

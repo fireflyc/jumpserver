@@ -37,12 +37,12 @@
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group">
+                            <div class="form-group pwd-container">
                                 <label for="password" class="col-sm-2 control-label">密码</label>
                                 <div class="col-sm-8">
                                     <input id="password" name="password" placeholder="Password" type="password" class="form-control">
                                     <span class="help-block m-b-none">
-                                        登陆web的密码（如不修改请留空）
+                                        登陆web的密码（如不修改请留空,请使用大写字母、小写字母、数字、特殊字符）
                                     </span>
                                 </div>
                             </div>
@@ -137,11 +137,14 @@
 
 {% block self_footer_js %}
 <script>
+
 $('#userForm').validator({
     timely: 2,
     theme: "yellow_right_effect",
     rules: {
-        check_pass: [/^\w+$/, '数字和字符']
+        check_pass: function(element, param, field) {
+            return $("#password").parents(".pwd-container").hasClass("has-success") || '密码不符合规则';
+        }
     },
     fields: {
         "username": {
@@ -149,6 +152,9 @@ $('#userForm').validator({
             tip: "输入用户名",
             ok: "",
             msg: {required: "必须填写!"}
+        },
+        "password":{
+          rule:"check_pass"
         },
         "name": {
             rule: "required",
@@ -167,8 +173,35 @@ $('#userForm').validator({
         }
     }
 });
-
 $("document").ready(function(){
+    $("#password").keyup(function(event){
+        removeHasClass = (function (index, css) {
+            return (css.match (/(^|\s)has-\S+/g) || []).join(' ');
+        });
+        var $this = $(event.target);
+        var container = $this.parents(".pwd-container");
+        //密码为八位及以上并且字母数字特殊字符三项都包括
+        var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+        var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+        var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+        if (false == enoughRegex.test($(this).val())) {
+            container.removeClass(removeHasClass);
+            container.addClass("has-error");
+            $("#submit_button").prop("disabled", true);
+         } else if (strongRegex.test($(this).val())) {
+            container.removeClass(removeHasClass);
+            container.addClass("has-success");
+            $("#submit_button").prop("disabled", false);
+         } else if (mediumRegex.test($(this).val())) {
+            container.removeClass(removeHasClass);
+            container.addClass("has-warning");
+            $("#submit_button").prop("disabled", true);
+         } else {
+            container.removeClass(removeHasClass);
+            container.addClass("has-error");
+            $("#submit_button").prop("disabled", true);
+         }
+    });
     $("input.role").click(function(){
         if($("input.role[value=GA]").is( ":checked" )){
             $("#admin_groups").css("display", 'block');
