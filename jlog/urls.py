@@ -8,4 +8,5 @@ urlpatterns = patterns('',
                        url(r'^history/$', log_history, name='log_history'),
                        url(r'^log_kill/', log_kill, name='log_kill'),
                        url(r'^record/$', log_record, name='log_record'),
+                       url(r'^log_hadoop_detail/$', log_hadoop_detail, name='log_hadoop_detail'),
                       )

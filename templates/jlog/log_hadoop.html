@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div id="ibox-content" class="ibox-title">
-                    <h5> 批量命令日志 </h5>
+                    <h5> 数据库任务 </h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -50,11 +50,13 @@
                             <thead>
                                 <tr>
                                     <th class="text-center"> ID </th>
+                                    <th class="text-center"> JobId </th>
+                                    <th class="text-center"> 开始时间 </th>
+                                    <th class="text-center"> 完成时间 </th>
+                                    <th class="text-center"> 任务名称 </th>
+                                    <th class="text-center"> 队列名 </th>
                                     <th class="text-center"> 用户名 </th>
-                                    <th class="text-center"> 主机 </th>
-                                    <th class="text-center"> 命令 </th>
-                                    <th class="text-center"> 来源IP </th>
-                                    <th class="text-center"> 时间 </th>
+                                    <th class="text-center"> 状态 </th>
                                     <th class="text-center"> 详情 </th>
 
                                 </tr>
@@ -64,13 +66,15 @@
                             {% for post in contacts.object_list %}
                                 <tr class="gradeX">
                                     <td class="text-center"> {{ post.id }} </td>
-                                    <td class="text-center username"> {{ post.user }} </td>
-                                    <td class="text-center ip"> {{ post.host | truncatechars:30 }} </td>
-                                    <td class="text-center ip"> {{ post.cmd | truncatechars:30 | color_cmd }} </td>
-                                    <td class="text-center remote_ip"> {{ post.remote_ip }} </td>
-                                    <td class="text-center start_time"> {{ post.datetime|date:"Y-m-d H:i:s"}} </td>
+                                    <td class="text-center username"> {{ post.jobId }} </td>
+                                    <td class="text-center ip"> {{ post.startTime | date:"Y-m-d H:i:s" }} </td>
+                                    <td class="text-center ip"> {{ post.finishTime | date:"Y-m-d H:i:s" }} </td>
+                                    <td class="text-center ip"> {{ post.jobName }} </td>
+                                    <td class="text-center ip"> {{ post.queue }} </td>
+                                    <td class="text-center ip"> {{ post.userName }} </td>
+                                    <td class="text-center ip"> {{ post.state }} </td>
                                     <td class="text-center">
-                                        <a href="{% url 'log_detail' 'exec' %}?id={{ post.id }}" class="btn btn-xs btn-primary">详情</a>
+                                        <a href="{% url 'log_hadoop_detail' %}?id={{ post.id }}" class="btn btn-xs btn-primary">详情</a>
                                     </td>
                                 </tr>
                             {% endfor %}

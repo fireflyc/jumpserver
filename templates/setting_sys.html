@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load mytags %}
+
+
+{% block content %}
+    {% include 'nav_cat_bar.html' %}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5> 系统设置 </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ibox-content">
+                        <div class="panel blank-panel">
+                            <div class="panel-heading">
+                                <div class="panel-options">
+                                    <ul class="nav nav-tabs">
+                                        <li id="tab1" class="active">
+                                            <a data-toggle="tab" href="#tab-default" aria-expanded="true">集群配置</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="tab-content">
+                                    <div id="tab-default" class="tab-pane active">
+                                        <form method="post" id="settingForm" class="form-horizontal" action="">
+                                            <div class="form-group">
+                                                <label for="key" class="col-sm-2 control-label">NameNode地址</label>
+                                                <div class="col-sm-8">
+                                                    <input name="nn_addr"
+                                                           type="text" class="form-control" value="10.10.100.50">
+                                                    <span class="help-block m-b-none"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="key" class="col-sm-2 control-label">NameNode SSH账号</label>
+                                                <div class="col-sm-8">
+                                                    <input name="nn_user" value="hadoop"
+                                                           type="text" class="form-control">
+                                                    <span class="help-block m-b-none"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="key" class="col-sm-2 control-label">NameNode SSH密码</label>
+                                                <div class="col-sm-8">
+                                                    <input name="nn_pwd" value="password"
+                                                           type="password" class="form-control">
+                                                    <span class="help-block m-b-none"></span>
+                                                </div>
+                                            </div>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="form-group">
+                                                <label for="key" class="col-sm-2 control-label">Hive地址</label>
+                                                <div class="col-sm-8">
+                                                    <input name="nn_addr"
+                                                           type="text" class="form-control" value="10.10.200.20">
+                                                    <span class="help-block m-b-none"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="key" class="col-sm-2 control-label">Hive SSH账号</label>
+                                                <div class="col-sm-8">
+                                                    <input name="nn_user" value="hive"
+                                                           type="text" class="form-control">
+                                                    <span class="help-block m-b-none"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="key" class="col-sm-2 control-label">Hive SSH密码</label>
+                                                <div class="col-sm-8">
+                                                    <input name="nn_pwd" value="password"
+                                                           type="password" class="form-control">
+                                                    <span class="help-block m-b-none"></span>
+                                                </div>
+                                            </div>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="form-group">
+                                                <label for="key" class="col-sm-2 control-label">数据库地址</label>
+                                                <div class="col-sm-8">
+                                                    <input name="nn_addr"
+                                                           type="text" class="form-control" value="10.10.100.39">
+                                                    <span class="help-block m-b-none"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="key" class="col-sm-2 control-label">数据库账号</label>
+                                                <div class="col-sm-8">
+                                                    <input name="nn_user" value="root"
+                                                           type="text" class="form-control">
+                                                    <span class="help-block m-b-none"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="key" class="col-sm-2 control-label">数据库密码</label>
+                                                <div class="col-sm-8">
+                                                    <input name="nn_pwd" value="password"
+                                                           type="password" class="form-control">
+                                                    <span class="help-block m-b-none"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-4 col-sm-offset-2">
+                                                    <button id="submit_button" class="btn btn-primary" type="submit">
+                                                        确认保存
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

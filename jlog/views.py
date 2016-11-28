@@ -7,7 +7,7 @@ from jperm.perm_api import user_have_perm
 from django.http import HttpResponseNotFound
 from jlog.log_api import renderJSON
 
-from jlog.models import Log, ExecLog, FileLog, TermLog, RunProcess
+from jlog.models import Log, ExecLog, FileLog, TermLog, RunProcess, HadoopProcess, DatabaseProcess
 from jumpserver.settings import LOG_DIR
 import zipfile
 import json
@@ -41,6 +41,17 @@ def log_list(request, offset):
         keyword = request.GET.get('keyword', '')
         if keyword:
             posts = posts.filter(Q(user__icontains=keyword) | Q(ip__icontains=keyword) | Q(task__icontains=keyword))
+    elif offset == 'hadoop':
+        posts = HadoopProcess.objects.all().order_by('-id')
+        keyword = request.GET.get('keyword', '')
+        if keyword:
+            posts = posts.filter(Q(job_id__icontains=keyword) | Q(jobName__icontains=keyword) | Q(queue__icontains=keyword)
+                                 | Q(userName__icontains=keyword))
+    elif offset == 'db':
+        posts = DatabaseProcess.objects.all().order_by('-id')
+        keyword = request.GET.get('keyword', '')
+        if keyword:
+            posts = posts.filter(Q(sql__icontains=keyword) | Q(userName__icontains=keyword) | Q(ip__icontains=keyword))
     elif offset == 'file':
         posts = FileLog.objects.all().order_by('-id')
         keyword = request.GET.get('keyword', '')
@@ -178,6 +189,11 @@ def log_detail(request, offset):
             result = {}
         return my_render('jlog/file_detail.html', locals(), request)
 
+@require_role('admin')
+def log_hadoop_detail(request):
+    log_id = request.GET.get('id')
+    log = get_object(HadoopProcess, id=log_id)
+    return my_render('jlog/hadoop_detail.html', locals(), request)
 
 class TermLogRecorder(object):
     """

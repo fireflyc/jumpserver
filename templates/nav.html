@@ -38,6 +38,9 @@
             <li id="jlog">
                <a href="{% url 'log_list' 'online' %}"><i class="fa fa-files-o"></i> <span class="nav-label">日志审计</span><span class="label label-info pull-right"></span></a>
             </li>
+            <li id="jalarm">
+               <a href="{% url 'log_alarm' 'all' %}"><i class="fa fa-warning"></i> <span class="nav-label">告警</span><span class="label label-info pull-right"></span></a>
+            </li>
             <li id="file">
                 <a href="#"><i class="fa fa-download"></i> <span class="nav-label">上传下载</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -48,8 +51,9 @@
             <li id="setting">
                    <a href="{% url 'setting' %}"><i class="fa fa-gears"></i> <span class="nav-label">设置</span><span class="label label-info pull-right"></span></a>
             </li>
-            <li class="special_link">
-                <a href="http://www.jumpserver.org" target="_blank"><i class="fa fa-database"></i> <span class="nav-label">访问官网</span></a>
+
+            <li id="setting_sys">
+                   <a href="{% url 'configsys' %}"><i class="fa fa-group"></i> <span class="nav-label">系统设置</span><span class="label label-info pull-right"></span></a>
             </li>
         </ul>
 
@@ -74,10 +78,6 @@
                     <li class="upload"><a href="{% url 'file_upload' %}">文件上传</a></li>
                     <li class="download"><a href="{% url 'file_download' %}">文件下载</a></li>
                 </ul>
-            </li>
-
-            <li class="special_link">
-                <a href="http://www.jumpserver.org" target="_blank"><i class="fa fa-database"></i> <span class="nav-label">访问官网</span></a>
             </li>
         </ul>
     </div>

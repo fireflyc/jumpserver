@@ -137,7 +137,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
-    'jumpserver.context_processors.name_proc',
+    'jumpserver.context_processors.name_proc'
 )
 
 TEMPLATE_DIRS = (
@@ -175,6 +175,12 @@ CRONJOBS = [
     ('*/10 * * * *', 'jlog.log_api.kill_invalid_connection'),
 ]
 
+NORMAL_CMD = ""
+WARN_CMD = ""
 DANGER_CMD = ""
-if config.has_option("base", "danger_cmd"):
-    DANGER_CMD = config.get("base", "danger_cmd")
+if config.has_option("alarm", "normal_cmd"):
+    NORMAL_CMD = config.get("alarm", "normal_cmd")
+if config.has_option("alarm", "warn_cmd"):
+    WARN_CMD = config.get("alarm", "warn_cmd")
+if config.has_option("alarm", "danger_cmd"):
+    DANGER_CMD = config.get("alarm", "danger_cmd")

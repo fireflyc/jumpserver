@@ -368,3 +368,6 @@ def web_terminal(request):
     return render_to_response('jlog/web_terminal.html', locals())
 
 
+@require_role('admin')
+def configsys(request):
+    return render_to_response('setting_sys.html', locals())

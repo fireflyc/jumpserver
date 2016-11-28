@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load mytags %}
+{% block content %}
+    {% include 'nav_cat_bar.html' %}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary"><b>{{ log.jobId }}</b></span>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div>
+                            <div class="text-left">
+                                <table class="table">
+                                    <tr>
+                                        <td class="text-navy">ID</td>
+                                        <td>{{ log.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">JobId</td>
+                                        <td>{{ log.jobId }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">提交时间</td>
+                                        <td>{{ log.submitTime|date:"Y-m-d H:i:s" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">开始时间</td>
+                                        <td>{{ log.startTime|date:"Y-m-d H:i:s" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">完成时间</td>
+                                        <td>{{ log.finishTime|date:"Y-m-d H:i:s" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">任务名称</td>
+                                        <td>{{ log.jobName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">队列名</td>
+                                        <td>{{ log.queue }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">用户名</td>
+                                        <td>{{ log.userName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">状态</td>
+                                        <td>{{ log.state }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">任务具体信息</td>
+                                        <td>{{ log.workflowName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">hive任务详细信息</td>
+                                        <td>{{ log.hiveQuery }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">其它</td>
+                                        <td>{{ log.otherQuery }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">完成情况</td>
+                                        <td>
+                                            <table class="table">
+                                                <tr>
+                                                    <td class="text-navy">map数</td>
+                                                    <td>{{ log.mapsTotal }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">map完成数</td>
+                                                    <td>{{ log.mapsCompleted }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">reduce数</td>
+                                                    <td>{{ log.reducesTotal }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">reduce完成数</td>
+                                                    <td>{{ log.reducesCompleted }}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>资源使用情况</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content inspinia-timeline">
+                        <div>
+                            <div class="text-left">
+                                <table class="table">
+                                    <tr>
+                                        <td class="text-navy">CPU和内存</td>
+                                        <td>
+                                            <table class="table">
+                                                <tr>
+                                                    <td class="text-navy">map使用cpu数</td>
+                                                    <td>{{ log.cpuMap }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">reduce使用cpu数</td>
+                                                    <td>{{ log.cpuReduce }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">使用cpu总核数</td>
+                                                    <td>{{ log.cpuTotal }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">map使用内存数</td>
+                                                    <td>{{ log.memMap }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">reduce使用内存数</td>
+                                                    <td>{{ log.memReduce }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">使用内存总数</td>
+                                                    <td>{{ log.memTotal }}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-navy">IO</td>
+                                        <td>
+                                            <table class="table">
+                                                <tr>
+                                                    <td class="text-navy">map读取字节数</td>
+                                                    <td>{{ log.fileBytesReadMap }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">reduce读取字节数</td>
+                                                    <td>{{ log.fileBytesReadRed }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">总读取字节数</td>
+                                                    <td>{{ log.fileBytesReadTotal }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">map写字节数</td>
+                                                    <td>{{ log.fileBytesWriteMap }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">reduce写字节数</td>
+                                                    <td>{{ log.fileBytesWriteRed }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">总写字节数</td>
+                                                    <td>{{ log.fileBytesWriteTotal }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">map读hdfs字节数</td>
+                                                    <td>{{ log.hdfsBytesReadMap }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">reduce读hdfs字节数</td>
+                                                    <td>{{ log.hdfsBytesReadRed }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">总读取hdfs字节数</td>
+                                                    <td>{{ log.hdfsBytesReadTotal }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">map写hdfs字节数</td>
+                                                    <td>{{ log.hdfsBytesWriteMap }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">reduce写hdfs字节数</td>
+                                                    <td>{{ log.hdfsBytesWriteRed }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-navy">总写hdfs字节数</td>
+                                                    <td>{{ log.hdfsBytesWriteTotal }}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#show').click(function () {
+                $('#last').css('display', 'none');
+                $('#all').css('display', 'block');
+            })
+        })
+    </script>
+
+
+{% endblock %}

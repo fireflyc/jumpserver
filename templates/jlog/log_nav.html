@@ -1,0 +1,16 @@
+<li {% if offset == "online" %}class="active"{% endif %}><a href="{% url 'log_list' 'online' %}" class="text-center"><i
+        class="fa fa-laptop"></i> 在线 </a></li>
+<li {% if offset == "offline" %}class="active"{% endif %}><a href="{% url 'log_list' 'offline' %}" class="text-center"><i
+        class="fa fa-bar-chart-o"></i> 登录历史</a></li>
+<li {% if offset == "exec" %}class="active"{% endif %}><a href="{% url 'log_list' 'exec' %}" class="text-center"><i
+        class="fa fa-bar-chart-o"></i> 命令记录 </a></li>
+<li {% if offset == "proc" %}class="active"{% endif %}><a href="{% url 'log_list' 'proc' %}" class="text-center"><i
+        class="fa fa-bar-chart-o"></i> 本地任务 </a></li>
+<li {% if offset == "hadoop" %}class="active"{% endif %}><a href="{% url 'log_list' 'hadoop' %}" class="text-center"><i
+        class="fa fa-bar-chart-o"></i> Hadoop任务 </a></li>
+<li {% if offset == "db" %}class="active"{% endif %}><a href="{% url 'log_list' 'db' %}" class="text-center"><i
+        class="fa fa-bar-chart-o"></i> 数据库任务 </a></li>
+
+<li {% if offset == "file" %}class="active"{% endif %}><a href="{% url 'log_list' 'file' %}" class="text-center"><i
+        class="fa fa-bar-chart-o"></i> 上传下载 </a>
+</li>

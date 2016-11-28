@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div id="ibox-content" class="ibox-title">
-                    <h5> 批量命令日志 </h5>
+                    <h5> 告警日志 </h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -30,7 +30,22 @@
                 <div class="ibox-content">
                     <div class="panel-options">
                         <ul class="nav nav-tabs">
-                            {% include 'jlog/log_nav.html' %}
+                            <li {% if offset == 'all' %}class="active"{% endif %}>
+                                <a href="{% url 'log_alarm' 'all' %}" class="text-center">
+                                    <i class="fa fa-laptop"></i> 全部 </a>
+                            </li>
+                            <li {% if offset == 'normal' %}class="active"{% endif %}>
+                                <a href="{% url 'log_alarm' 'normal' %}" class="text-center">
+                                    <i class="fa fa-bar-chart-o"></i> 一般警告 </a>
+                            </li>
+                            <li {% if offset == 'warn' %}class="active"{% endif %}>
+                                <a href="{% url 'log_alarm' 'warn' %}" class="text-center">
+                                    <i class="fa fa-bar-chart-o"></i> 警告 </a>
+                            </li>
+                            <li {% if offset == 'danger' %}class="active"{% endif %}>
+                                <a href="{% url 'log_alarm' 'danger' %}" class="text-center">
+                                    <i class="fa fa-bar-chart-o"></i>  严重警告 </a>
+                            </li>
                             <div class="" style="float: right">
                                 <form id="search_form" method="get" action="" class="pull-right mail-search">
                                     <div class="input-group">
